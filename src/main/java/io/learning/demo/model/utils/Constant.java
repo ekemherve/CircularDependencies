@@ -8,6 +8,12 @@ public class Constant {
 
     public static final String ROLE_DOESNT_EXISTS = "ROLE DOESNT EXISTS";
 
+    public static final String ROLE_USER = "ROLE_USER";
+
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
+
+    public static final String ROLE_NAME_CANNOT_BE_NULL = "ROLENAME CANNOT BE NULL";
+
 
     public static final String USER_CANNOT_BE_NULL = "USER CANNOT BE NULL";
 
@@ -19,7 +25,4 @@ public class Constant {
 
     public static final String USER_OR_EMAIL_ALREADY_EXISTS = "USER OR EMAIL ALREADY EXISTS";
 
-    public static final String ROLE_USER = "ROLE_USER";
-
-    public static final String ROLE_ADMIN = "ROLE_ADMIN";
 }

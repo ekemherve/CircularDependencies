@@ -1,8 +1,8 @@
 package io.learning.demo.service.user;
 
-import io.learning.demo.dataaccess.UserEntity;
-import io.learning.demo.dataaccess.UserMapper;
-import io.learning.demo.dataaccess.UserRepository;
+import io.learning.demo.dataaccess.user.UserEntity;
+import io.learning.demo.dataaccess.user.UserMapper;
+import io.learning.demo.dataaccess.user.UserRepository;
 import io.learning.demo.model.user.User;
 import io.learning.demo.model.utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;

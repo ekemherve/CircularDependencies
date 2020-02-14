@@ -1,4 +1,4 @@
-package io.learning.demo.dataaccess;
+package io.learning.demo.dataaccess.user;
 
 import lombok.Data;
 

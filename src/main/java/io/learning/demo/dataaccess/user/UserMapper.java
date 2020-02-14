@@ -1,4 +1,4 @@
-package io.learning.demo.dataaccess;
+package io.learning.demo.dataaccess.user;
 
 import io.learning.demo.model.user.User;
 import org.mapstruct.Mapper;
