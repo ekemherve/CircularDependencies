@@ -3,14 +3,12 @@ package io.learning.demo.service.role;
 import io.learning.demo.dataaccess.role.entity.RoleEntity;
 import io.learning.demo.dataaccess.role.mapper.RoleMapper;
 import io.learning.demo.dataaccess.role.repository.RoleRepository;
-import io.learning.demo.dataaccess.user.UserEntity;
 import io.learning.demo.model.role.Role;
 import io.learning.demo.model.utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -84,5 +82,17 @@ public class RoleServiceImpl implements RoleService {
         if(Objects.nonNull(roleFromDatabase)){
             roleRepository.delete(roleFromDatabase);
         }
+    }
+
+    @Override
+    public Role findByName(String name) {
+
+        RoleEntity roleToFind = roleRepository.findByName(name);
+
+        if(Objects.nonNull(roleToFind)){
+            return roleMapper.mapToBo(roleToFind);
+        }
+
+        return null;
     }
 }

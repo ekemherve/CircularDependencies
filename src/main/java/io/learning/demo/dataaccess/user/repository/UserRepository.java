@@ -1,5 +1,6 @@
-package io.learning.demo.dataaccess.user;
+package io.learning.demo.dataaccess.user.repository;
 
+import io.learning.demo.dataaccess.user.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

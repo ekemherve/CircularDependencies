@@ -1,15 +1,12 @@
 package io.learning.demo.dataaccess.role.entity;
 
+import io.learning.demo.dataaccess.user.entity.UserEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode
-
+@Data
 @Entity
 @Table(name = "roles")
 public class RoleEntity {
@@ -21,11 +18,9 @@ public class RoleEntity {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Override
-    public String toString() {
-        return "RoleEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "roles")
+    private Set<UserEntity> users;
+
 }

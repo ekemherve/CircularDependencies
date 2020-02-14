@@ -1,10 +1,12 @@
 package io.learning.demo.service.user;
 
-import io.learning.demo.dataaccess.user.UserEntity;
-import io.learning.demo.dataaccess.user.UserMapper;
-import io.learning.demo.dataaccess.user.UserRepository;
+import io.learning.demo.dataaccess.user.entity.UserEntity;
+import io.learning.demo.dataaccess.user.mapper.UserMapper;
+import io.learning.demo.dataaccess.user.repository.UserRepository;
+import io.learning.demo.model.role.Role;
 import io.learning.demo.model.user.User;
 import io.learning.demo.model.utils.Constant;
+import io.learning.demo.service.role.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,13 @@ public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
+    private final RoleService roleService;
+
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, RoleService roleService) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.roleService = roleService;
     }
 
     @Override
@@ -44,7 +49,13 @@ public class UserServiceImpl implements UserService {
             throw new Exception(Constant.USER_ALREADY_EXISTS);
         }
 
+        Role role = roleService.findByName(Constant.ROLE_USER);
 
+        if(Objects.isNull(role)) {
+            throw new Exception(Constant.ROLE_DOESNT_EXISTS);
+        }
+
+        user.setRoles(Collections.singleton(role));
         UserEntity userEntity = userMapper.mapToEo(user);
         userEntity = userRepository.save(userEntity);
 
@@ -67,7 +78,9 @@ public class UserServiceImpl implements UserService {
 
         List<UserEntity> existingUsers = userRepository.findByIdNotAndUsernameOrIdNotAndEmail(optional.get().getId(), user.getUsername(), user.getEmail());
 
-        if (!existingUsers.isEmpty()) {
+        existingUsers.forEach(System.out::println);
+
+        if (Objects.nonNull(existingUsers) && !existingUsers.isEmpty()) {
             throw new Exception(Constant.USER_OR_EMAIL_ALREADY_EXISTS);
         }
 
